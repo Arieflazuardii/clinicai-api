@@ -1,0 +1,7 @@
+DB_Username=
+DB_Password=
+DB_Port=
+DB_Host=
+DB_Name=
+JWT_SECRET_KEY=
+SALT=
