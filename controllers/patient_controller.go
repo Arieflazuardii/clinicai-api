@@ -4,6 +4,7 @@ import (
 	"clinicai-api/models/web"
 	"clinicai-api/services"
 	"clinicai-api/utils/helpers"
+	"clinicai-api/utils/helpers/middleware"
 	res "clinicai-api/utils/response"
 	"net/http"
 	"strconv"
@@ -82,7 +83,7 @@ func (c *PatientControllerImpl) LoginPatientController(ctx echo.Context) error {
 
 	patientLoginResponse := res.PatientDomainToPatientLoginResponse(response)
 
-	token, err := helpers.GenerateToken(&patientLoginResponse, int(response.ID))
+	token, err := middleware.GenerateTokenPatient(&patientLoginResponse, int(response.ID))
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("generate jwt token error"))
 	}

@@ -17,7 +17,7 @@ type Patient struct {
 	Email 		 string    `json:"email"`
 	Password 	 string    `json:"password"`
 	Nik 		 string    `json:"nik"`
-	Birthday 	 time.Time `json:"birthday"`
+	Birthday 	 string 	`json:"birthday"`
 	Age 		 uint64    `json:"age"`
 	Address 	 string    `json:"address"`
 	Gender 		 string    `gorm:"type:ENUM('MALE', 'FEMALE', 'UNKNOWN');not null;default:'UNKNOWN'"`

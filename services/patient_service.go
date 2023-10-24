@@ -49,7 +49,6 @@ func (service *PatientServiceImpl) CreatePatient(ctx echo.Context, request web.P
 	patient := req.PatientCreateRequestToPatientDomain(request)
 
 	patient.Password = helpers.HashPassword(patient.Password)
-
 	result, err := service.PatientRepository.Create(patient)
 
 	if err != nil {

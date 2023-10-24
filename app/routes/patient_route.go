@@ -22,7 +22,7 @@ func PatientRoutes(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 	patientGroup.POST("/register", PatientController.RegisterPatientController)
 	patientGroup.POST("/login", PatientController.LoginPatientController)
 
-	patientGroup.Use(echoJwt.JWT([]byte(os.Getenv("JWT_SECRET_KEY"))))
+	patientGroup.Use(echoJwt.JWT([]byte(os.Getenv("SECRET_KEY"))))
 
 	patientGroup.GET("/:id", PatientController.GetPatientController)
 	patientGroup.GET("", PatientController.GetPatientsController)
