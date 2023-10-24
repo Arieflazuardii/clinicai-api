@@ -13,7 +13,6 @@ import (
 )
 
 
-
 type PatientService interface {
 	CreatePatient(ctx echo.Context, request web.PatientCreateRequest) (*domain.Patient, error)
 	LoginPatient(ctx echo.Context, request web.PatientLoginRequest) (*domain.Patient, error)
