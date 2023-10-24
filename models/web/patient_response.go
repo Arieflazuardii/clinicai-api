@@ -17,4 +17,5 @@ type PatientResponse struct {
 	Address      string `json:"address"`
 	Gender       string `json:"gender"`
 	Phone_number string `json:"phone_number"`
+
 }

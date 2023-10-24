@@ -20,6 +20,7 @@ func main() {
 	})
 
 	routes.PatientRoutes(myApp, DB, validate)
+	routes.DoctorRoutes(myApp, DB, validate)
 
 
 	myApp.Pre(middleware.RemoveTrailingSlash())
