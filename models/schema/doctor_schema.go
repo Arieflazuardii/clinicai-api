@@ -7,7 +7,7 @@ import (
 )
 
 type Doctor struct {
-	ID        uint64         `gorm:"primaryKey"`
+	ID        uint         `gorm:"primaryKey"`
 	CreatedAt time.Time      `gorm:"autoCreateTime"`
 	UpdatedAt time.Time      `gorm:"autoUpdateTime"`
 	DeletedAt gorm.DeletedAt `gorm:"index"`
@@ -19,4 +19,5 @@ type Doctor struct {
 	Specialization string `json:"specialization"`
 	Gender         string `gorm:"type:ENUM('MALE', 'FEMALE', 'UNKNOWN');not null;default:'UNKNOWN'"`
 	Phone_number   string `json:"phone_number"`
+	Schedule 	   []Schedule `gorm:"foreignKey:DoctorID"`
 }
