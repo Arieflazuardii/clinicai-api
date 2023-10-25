@@ -8,6 +8,7 @@ type PatientLoginResponse struct {
 
 type PatientResponse struct {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	ID           uint64 `json:"id"`
 =======
 <<<<<<< Updated upstream
@@ -24,6 +25,9 @@ type PatientResponse struct {
 =======
 	ID           uint `json:"id"`
 >>>>>>> Stashed changes
+=======
+	ID           uint   `json:"id"`
+>>>>>>> Stashed changes
 	Name         string `json:"name"`
 	Email        string `json:"email"`
 	Password     string `json:"password"`
@@ -37,9 +41,12 @@ type PatientResponse struct {
 	Address      string `json:"address"`
 	Gender       string `json:"gender"`
 	Phone_number string `json:"phone_number"`
+<<<<<<< Updated upstream
 
 <<<<<<< Updated upstream
 =======
 >>>>>>> Stashed changes
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 }

@@ -84,7 +84,11 @@ func (c *PatientControllerImpl) LoginPatientController(ctx echo.Context) error {
 	patientLoginResponse := res.PatientDomainToPatientLoginResponse(response)
 
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	token, err := middleware.GenerateTokenPatient(&patientLoginResponse, int(response.ID))
+=======
+	token, err := middleware.GenerateTokenPatient(response.ID)
+>>>>>>> Stashed changes
 
 =======
 <<<<<<< Updated upstream
