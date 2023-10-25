@@ -5,7 +5,6 @@ import (
 	"clinicai-api/models/schema"
 	req "clinicai-api/utils/request"
 	res "clinicai-api/utils/response"
-	"fmt"
 
 	"gorm.io/gorm"
 )
@@ -100,7 +99,6 @@ func (repository *DoctorRepositoryImpl) FindByName(name string) (*domain.Doctor,
 
 func (repository *DoctorRepositoryImpl) Delete(id int) (error) {
 	result :=repository.DB.Delete(&schema.Doctor{},id)
-	fmt.Println(result)
 	if result.Error != nil {
 		return result.Error
 	}
