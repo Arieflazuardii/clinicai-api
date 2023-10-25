@@ -13,7 +13,6 @@ import (
 )
 
 
-
 type PatientService interface {
 	CreatePatient(ctx echo.Context, request web.PatientCreateRequest) (*domain.Patient, error)
 	LoginPatient(ctx echo.Context, request web.PatientLoginRequest) (*domain.Patient, error)
@@ -49,7 +48,6 @@ func (service *PatientServiceImpl) CreatePatient(ctx echo.Context, request web.P
 	patient := req.PatientCreateRequestToPatientDomain(request)
 
 	patient.Password = helpers.HashPassword(patient.Password)
-
 	result, err := service.PatientRepository.Create(patient)
 
 	if err != nil {
