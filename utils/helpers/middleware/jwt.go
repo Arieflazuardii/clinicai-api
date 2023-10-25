@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"clinicai-api/models/web"
 	"os"
 	"time"
 
@@ -9,40 +8,40 @@ import (
 )
 
 
-func GenerateTokenPatient(PatientLoginResponse *web.PatientLoginResponse, id int) (string, error) {
-	expireTime := time.Now().Add(time.Hour * 168).Unix()
-	claims := jwt.MapClaims{}
-	claims["authorized"] = true
-	claims["id"] = id
-	claims["name"] = PatientLoginResponse.Name
-	claims["email"] = PatientLoginResponse.Email
-	claims["role"] = "Patient"
-	claims["exp"] = expireTime
+func GenerateTokenPatient(PatientID uint) (string, error) {
+	jwtSecret := []byte(os.Getenv("SECRET_KEY"))
+
+	claims := jwt.MapClaims{
+		"sub": PatientID,
+		"exp": time.Now().Add(time.Hour * 1).Unix(),
+		"iat": time.Now().Unix(),
+		"role": "Patient",
+	}
 
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	validToken, err := token.SignedString([]byte(os.Getenv("SECRET_KEY")))
+	tokenString, err := token.SignedString(jwtSecret)
 	if err != nil {
 		return "", err
 	}
 
-	return validToken, nil
+	return tokenString, nil
 }
 
-func GenerateTokenDoctor(DoctorLoginResponse *web.DoctorLoginResponse, id int) (string, error) {
-	expireTime := time.Now().Add(time.Hour * 168).Unix()
-	claims := jwt.MapClaims{}
-	claims["authorized"] = true
-	claims["id"] = id
-	claims["name"] = DoctorLoginResponse.Name
-	claims["email"] = DoctorLoginResponse.Email
-	claims["role"] = "Doctor"
-	claims["exp"] = expireTime
+func GenerateTokenDoctor(DoctorID uint) (string, error) {
+    jwtSecret := []byte(os.Getenv("SECRET_KEY"))
 
-	token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
-	validToken, err := token.SignedString([]byte(os.Getenv("SECRET_KEY")))
-	if err != nil {
-		return "", err
-	}
+    claims := jwt.MapClaims{
+        "sub":   DoctorID,
+        "exp":   time.Now().Add(time.Hour * 1).Unix(),
+        "iat":   time.Now().Unix(),
+		"role": "Doctor",
+    }
 
-	return validToken, nil
+    token := jwt.NewWithClaims(jwt.SigningMethodHS256, claims)
+    tokenString, err := token.SignedString(jwtSecret)
+    if err != nil {
+        return "", err
+    }
+
+    return tokenString, nil
 }
