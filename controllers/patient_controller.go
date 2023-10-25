@@ -82,22 +82,7 @@ func (c *PatientControllerImpl) LoginPatientController(ctx echo.Context) error {
 	}
 
 	patientLoginResponse := res.PatientDomainToPatientLoginResponse(response)
-
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-	token, err := middleware.GenerateTokenPatient(&patientLoginResponse, int(response.ID))
-=======
 	token, err := middleware.GenerateTokenPatient(response.ID)
->>>>>>> Stashed changes
-
-=======
-<<<<<<< Updated upstream
-	token, err := helpers.GenerateToken(&patientLoginResponse, int(response.ID))
-=======
-	token, err := middleware.GenerateTokenPatient(response.ID)
-
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("generate jwt token error"))
 	}

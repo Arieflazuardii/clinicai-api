@@ -17,17 +17,8 @@ type Patient struct {
 	Email 		 string    `json:"email"`
 	Password 	 string    `json:"password"`
 	Nik 		 string    `json:"nik"`
-<<<<<<< Updated upstream
-	Birthday 	 string 	`json:"birthday"`
-=======
-<<<<<<< Updated upstream
-	Birthday 	 time.Time `json:"birthday"`
->>>>>>> Stashed changes
-	Age 		 uint64    `json:"age"`
-=======
 	Birthday 	 string    `json:"birthday"`
 	Age 		 uint      `json:"age"`
->>>>>>> Stashed changes
 	Address 	 string    `json:"address"`
 	Gender 		 string    `gorm:"type:ENUM('MALE', 'FEMALE', 'UNKNOWN');not null;default:'UNKNOWN'"`
 	Phone_number string    	`json:"phone_number"`
