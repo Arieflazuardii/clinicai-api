@@ -83,7 +83,7 @@ func (c *DoctorControllerImpl) LoginDoctorController(ctx echo.Context) error {
 
 	doctorLoginResponse := res.DoctorDomainToDoctorLoginResponse(response)
 
-	token, err := middleware.GenerateTokenDoctor(&doctorLoginResponse, int(response.ID))
+	token, err := middleware.GenerateTokenDoctor(response.ID)
 	if err != nil {
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("generate jwt token error"))
 	}
