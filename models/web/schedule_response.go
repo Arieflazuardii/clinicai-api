@@ -22,8 +22,3 @@ type ScheduleUpdateResponse struct {
 	Quota    int       `json:"quota" `
 }
 
-type ScheduleUpdateResponse struct {
-	DoctorID uint   	`json:"DoctorID"`
-	Date     time.Time  `json:"date" `
-	Quota    int        `json:"quota"`
-}
