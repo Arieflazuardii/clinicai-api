@@ -7,4 +7,5 @@ type Schedule struct {
 	DoctorID uint
 	Date     time.Time
 	Quota    int
+	DoctorName string
 }
