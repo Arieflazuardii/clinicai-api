@@ -25,6 +25,7 @@ func ScheduleRoutes(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 	scheduleGroup.POST("", ScheduleController.CreateScheduleController, middleware.AuthMiddleware("Doctor"))
 	scheduleGroup.GET("/:id", ScheduleController.GetScheduleController, middleware.AuthMiddleware("Doctor"))
 	scheduleGroup.GET("", ScheduleController.GetAllScheduleController, middleware.AuthMiddleware("Doctor"))
+	scheduleGroup.GET("/doctor", ScheduleController.GetScheduleControllerByDoctor, middleware.AuthMiddleware("Doctor"))
 	scheduleGroup.PUT("/:id", ScheduleController.UpdateScheduleController, middleware.AuthMiddleware("Doctor"))
 	scheduleGroup.DELETE("/:id", ScheduleController.DeleteScheduleController, middleware.AuthMiddleware("Doctor"))
 }
