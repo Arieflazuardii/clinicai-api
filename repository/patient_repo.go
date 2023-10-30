@@ -35,7 +35,7 @@ func (repository *PatientRepositoryImpl) Create(patient *domain.Patient) (*domai
 		return nil, result.Error
 	}
 	results := res.PatientSchemaToPatientDomain(patientDB)
-
+	
 	return results, nil
 }
 
