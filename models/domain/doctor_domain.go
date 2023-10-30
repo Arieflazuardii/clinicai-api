@@ -1,7 +1,7 @@
 package domain
 
 type Doctor struct {
-	ID             uint64
+	ID             uint
 	Name           string
 	Email          string
 	Password       string
@@ -9,4 +9,5 @@ type Doctor struct {
 	Specialization string
 	Gender         string
 	Phone_number   string
+	Schedule       []Schedule
 }

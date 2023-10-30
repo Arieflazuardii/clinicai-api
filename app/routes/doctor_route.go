@@ -4,6 +4,7 @@ import (
 	"clinicai-api/controllers"
 	"clinicai-api/repository"
 	"clinicai-api/services"
+	"clinicai-api/utils/helpers/middleware"
 	"os"
 
 	"github.com/go-playground/validator"
@@ -24,9 +25,9 @@ func DoctorRoutes(e *echo.Echo, db *gorm.DB, validate *validator.Validate) {
 
 	doctorGroup.Use(echoJwt.JWT([]byte(os.Getenv("SECRET_KEY"))))
 
-	doctorGroup.GET("/:id", DoctorController.GetDoctorController)
-	doctorGroup.GET("", DoctorController.GetDoctorsController)
-	doctorGroup.GET("/name/:name", DoctorController.GetDoctorByNameController)
-	doctorGroup.PUT("/:id", DoctorController.UpdateDoctorController)
-	doctorGroup.DELETE("/:id", DoctorController.DeleteDoctorController)
+	doctorGroup.GET("/:id", DoctorController.GetDoctorController, middleware.AuthMiddleware("Doctor"))
+	doctorGroup.GET("", DoctorController.GetDoctorsController, middleware.AuthMiddleware("Doctor"))
+	doctorGroup.GET("/name/:name", DoctorController.GetDoctorByNameController, middleware.AuthMiddleware("Doctor"))
+	doctorGroup.PUT("/:id", DoctorController.UpdateDoctorController, middleware.AuthMiddleware("Doctor"))
+	doctorGroup.DELETE("/:id", DoctorController.DeleteDoctorController, middleware.AuthMiddleware("Doctor"))
 }

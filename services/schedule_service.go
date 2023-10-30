@@ -86,6 +86,7 @@ func (service *ScheduleServiceImpl) FindByDoctor(id int) ([]domain.Schedule, err
 	return schedule, nil
 }
 
+
 func (service *ScheduleServiceImpl) FindAll(ctx echo.Context) ([]domain.Schedule, error) {
 	schedule, _ := service.ScheduleRepository.FindAll()
 	if schedule == nil {

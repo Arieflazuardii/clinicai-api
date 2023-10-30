@@ -69,6 +69,7 @@ func (repository *ScheduleRepositoryImpl) FindById(id int) (*domain.Schedule, er
 	FROM schedules 
 	LEFT JOIN doctors ON schedules.doctor_id = doctors.id
 	WHERE schedules.id = ?`
+
 	result := repository.DB.Raw(query, id).Scan(&schedule)
 
 	if result.Error != nil {

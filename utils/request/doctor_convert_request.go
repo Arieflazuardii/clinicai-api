@@ -40,12 +40,12 @@ func DoctorUpdateRequestToDoctorDomain(request web.DoctorUpdateRequest) *domain.
 
 func DoctorDomaintoDoctorSchema(request domain.Doctor) *schema.Doctor{
 	return &schema.Doctor{
-		Name:         request.Name,
-		Email:        request.Email,
-		Password:     request.Password,
-		Nik:          request.Nik,      
+		Name:         		request.Name,
+		Email:        		request.Email,
+		Password:     		request.Password,
+		Nik:          		request.Nik,      
 		Specialization:     request.Specialization,
-		Gender:       request.Gender,
-		Phone_number: request.Phone_number,
+		Gender:       		request.Gender,
+		Phone_number: 		request.Phone_number,
 	}
 }

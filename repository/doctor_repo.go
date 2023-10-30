@@ -5,7 +5,6 @@ import (
 	"clinicai-api/models/schema"
 	req "clinicai-api/utils/request"
 	res "clinicai-api/utils/response"
-	"fmt"
 
 	"gorm.io/gorm"
 )
@@ -88,7 +87,6 @@ func (repository *DoctorRepositoryImpl) FindAll() ([]domain.Doctor, error) {
 
 func (repository *DoctorRepositoryImpl) FindByName(name string) (*domain.Doctor, error) {
 	doctor := domain.Doctor{}
-
 	result :=repository.DB.Where("LOWER(name) LIKE LOWER(?)", "%"+name+"%").First(&doctor)
 
 	if result.Error != nil {
@@ -100,7 +98,6 @@ func (repository *DoctorRepositoryImpl) FindByName(name string) (*domain.Doctor,
 
 func (repository *DoctorRepositoryImpl) Delete(id int) (error) {
 	result :=repository.DB.Delete(&schema.Doctor{},id)
-	fmt.Println(result)
 	if result.Error != nil {
 		return result.Error
 	}
