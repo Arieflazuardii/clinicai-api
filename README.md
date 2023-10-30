@@ -29,7 +29,7 @@ The purpose of this application is to simplify the process of registering patien
 - [MySQL](https://www.mysql.com/): Relational Database
 - [Docker](https://www.docker.com/): Containerization
 - [GCP](https://cloud.google.com//): Cloud Platform Deployment
-- Clean Architecture: Code Structure
+- [CleanArchitecture]: Code Structure
 - [Git](https://git-scm.com/): Version Control
 - [JWT](https://jwt.io/): Authentication
 - [AI](https://platform.openai.com/playground): AI Recommendation
