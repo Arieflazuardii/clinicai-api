@@ -11,4 +11,5 @@ type Patient struct {
 	Address      string
 	Gender       string
 	Phone_number string
+	Registration []Registration
 }

@@ -6,6 +6,7 @@ import (
 	"clinicai-api/utils/helpers"
 	"clinicai-api/utils/helpers/middleware"
 	res "clinicai-api/utils/response"
+	"fmt"
 	"net/http"
 	"strconv"
 	"strings"
@@ -129,6 +130,7 @@ func(c DoctorControllerImpl) GetDoctorsController(ctx echo.Context) error {
 
 func (c DoctorControllerImpl) GetDoctorByNameController(ctx echo.Context) error {
 	doctorName := ctx.Param("name")
+	fmt.Println(doctorName)
 	
 	result, err := c.DoctorService.FindByName(ctx, doctorName)
 	if err != nil {

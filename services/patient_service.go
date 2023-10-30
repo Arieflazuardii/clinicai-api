@@ -45,15 +45,14 @@ func (service *PatientServiceImpl) CreatePatient(ctx echo.Context, request web.P
 	if existingPatient != nil {
 		return nil, fmt.Errorf("email already exists")
 	}
-	patient := req.PatientCreateRequestToPatientDomain(request)
 
+	patient := req.PatientCreateRequestToPatientDomain(request)
 	patient.Password = helpers.HashPassword(patient.Password)
 	result, err := service.PatientRepository.Create(patient)
-
+	
 	if err != nil {
 		return nil, fmt.Errorf("error creating patient %s", err.Error())
 	}
-
 	return result, nil
 }
 

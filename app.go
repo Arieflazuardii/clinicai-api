@@ -26,6 +26,7 @@ func main() {
 	routes.MedicalRecordRoutes(myApp, DB, validate)
 
 
+
 	myApp.Pre(middleware.RemoveTrailingSlash())
 	myApp.Use(middleware.CORS())
 	myApp.Use(middleware.LoggerWithConfig(
