@@ -11,7 +11,7 @@ type Doctor struct {
 	CreatedAt time.Time      `gorm:"autoCreateTime"`
 	UpdatedAt time.Time      `gorm:"autoUpdateTime"`
 	DeletedAt gorm.DeletedAt `gorm:"index"`
-
+	
 	Name           string `json:"name"`
 	Email          string `json:"email"`
 	Password       string `json:"password"`
@@ -20,4 +20,5 @@ type Doctor struct {
 	Gender         string `gorm:"type:ENUM('MALE', 'FEMALE', 'UNKNOWN');not null;default:'UNKNOWN'"`
 	Phone_number   string `json:"phone_number"`
 	Schedule 	   []Schedule `gorm:"foreignKey:DoctorID"`
+	Registration   []Registration `gorm:"foreignKey:DoctorID"`
 }

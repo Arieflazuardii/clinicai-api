@@ -87,7 +87,6 @@ func (repository *DoctorRepositoryImpl) FindAll() ([]domain.Doctor, error) {
 
 func (repository *DoctorRepositoryImpl) FindByName(name string) (*domain.Doctor, error) {
 	doctor := domain.Doctor{}
-
 	result :=repository.DB.Where("LOWER(name) LIKE LOWER(?)", "%"+name+"%").First(&doctor)
 
 	if result.Error != nil {
