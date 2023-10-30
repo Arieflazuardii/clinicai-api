@@ -16,6 +16,7 @@ type ScheduleService interface {
 	CreateSchedule(ctx echo.Context, request web.ScheduleCreateRequest) (*domain.Schedule, error)
 	UpdateSchedule(ctx echo.Context, request web.ScheduleUpdateRequest, id int) (*domain.Schedule, error)
 	FindById(ctx echo.Context, id int) (*domain.Schedule, error)
+	FindByDoctor(id int) ([]domain.Schedule, error)
 	FindAll(ctx echo.Context) ([]domain.Schedule, error)
 	DeleteSchedule(ctx echo.Context, id int) error
 }
@@ -47,6 +48,7 @@ func (service *ScheduleServiceImpl) CreateSchedule(ctx echo.Context, request web
 
 	return result, nil
 }
+
 func (service *ScheduleServiceImpl) UpdateSchedule(ctx echo.Context, request web.ScheduleUpdateRequest, id int) (*domain.Schedule, error) {
 	err := service.Validate.Struct(request)
 	if err != nil {
@@ -75,6 +77,16 @@ func (service *ScheduleServiceImpl) FindById(ctx echo.Context, id int) (*domain.
 	return schedule, nil
 }
 
+func (service *ScheduleServiceImpl) FindByDoctor(id int) ([]domain.Schedule, error) {
+	schedule, _ := service.ScheduleRepository.FindByDoctor(id)
+	if schedule == nil {
+		return nil, fmt.Errorf("schedule not found")
+	}
+
+	return schedule, nil
+}
+
+
 func (service *ScheduleServiceImpl) FindAll(ctx echo.Context) ([]domain.Schedule, error) {
 	schedule, _ := service.ScheduleRepository.FindAll()
 	if schedule == nil {
@@ -87,7 +99,7 @@ func (service *ScheduleServiceImpl) FindAll(ctx echo.Context) ([]domain.Schedule
 func (service *ScheduleServiceImpl) DeleteSchedule(ctx echo.Context, id int) error {
 	schedule, _ := service.ScheduleRepository.FindById(id)
 	if schedule == nil {
-		return fmt.Errorf("book not found")
+		return fmt.Errorf("schedule not found")
 	}
 
 	err := service.ScheduleRepository.Delete(id)
