@@ -39,7 +39,7 @@ The purpose of this application is to simplify the process of registering patien
 - Clone a Repository
 
 ```bash
-git clone https://github.com/hafidznaufl/echo-gorm-boilerplate.git && cd echo-gorm-boilerplate
+git clone https://github.com/Arieflazuardii/clinicai-api.git
 ```
 
 - Get & Install All Dependencies
