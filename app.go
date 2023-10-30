@@ -22,6 +22,8 @@ func main() {
 	routes.PatientRoutes(myApp, DB, validate)
 	routes.DoctorRoutes(myApp, DB, validate)
 	routes.ScheduleRoutes(myApp, DB, validate)
+	routes.RegistrationRoutes(myApp, DB, validate)
+	routes.MedicalRecordRoutes(myApp, DB, validate)
 
 
 	myApp.Pre(middleware.RemoveTrailingSlash())
