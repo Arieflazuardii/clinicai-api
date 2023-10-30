@@ -21,4 +21,3 @@ type ScheduleUpdateResponse struct {
 	Date     time.Time `json:"date" `
 	Quota    int       `json:"quota" `
 }
-
