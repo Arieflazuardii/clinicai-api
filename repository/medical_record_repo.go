@@ -64,11 +64,7 @@ func (repository *MedicalRecordRepositoryImpl) FindById(id int) (*domain.Medical
 	if err := repository.DB.First(&medicalRecord, id).Error; err != nil {
 		return nil, err
 	}
-<<<<<<< Updated upstream
-	query := "SELECT * FROM medical_records WHERE medical_records.id = ?"
-=======
 	query := "SELECT * FROM medical_records WHERE medical_records.id = ? AND medical_records.deleted_at IS NULL"
->>>>>>> Stashed changes
 	result := repository.DB.Raw(query, id).Scan(&medicalRecord)
 
 	if result.Error != nil {
@@ -86,10 +82,7 @@ func (repository *MedicalRecordRepositoryImpl) FindAll() ([]domain.MedicalRecord
 	LEFT JOIN registrations ON medical_records.registration_id = registrations.id
 	LEFT JOIN patients ON registrations.patient_id = patients.id
 	LEFT JOIN doctors ON registrations.doctor_id = doctors.id
-<<<<<<< Updated upstream
-=======
 	WHERE medical_records.deleted_at IS NULL
->>>>>>> Stashed changes
 	`
 	result := repository.DB.Raw(query).Scan(&medicalRecord)
 	if result.Error != nil {
@@ -108,11 +101,7 @@ func (repository *MedicalRecordRepositoryImpl) FindByPatient(id int) ([]domain.M
 	LEFT JOIN registrations ON medical_records.registration_id = registrations.id
 	LEFT JOIN patients ON registrations.patient_id = patients.id
 	LEFT JOIN doctors ON registrations.doctor_id = doctors.id
-<<<<<<< Updated upstream
-	WHERE medical_records.patients.id = (?)`
-=======
 	WHERE medical_records.patients.id = (?) AND medical_recoeds.deleted_at IS NULL`
->>>>>>> Stashed changes
 
 	result := repository.DB.Raw(query, id).Scan(&medicalRecord)
 	if result.Error != nil {
