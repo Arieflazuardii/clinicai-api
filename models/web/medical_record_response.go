@@ -9,9 +9,13 @@ type MedicalRecordResponse struct {
 	Symptomps      string               `json:"symptomps"`
 	Diagnoses      string               `json:"diagnoses"`
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	Solutions      string               `json:"Solutions"`
 	PatientName string `json:"patient_name"`
 	DoctorName string `json:"doctor_name"`
+=======
+	Solutions      string               `json:"solutions"`
+>>>>>>> Stashed changes
 =======
 	Solutions      string               `json:"solutions"`
 >>>>>>> Stashed changes
@@ -33,7 +37,11 @@ type MedicalRecordCreateResponse struct {
 	Symptomps      string `json:"symptomps"`
 	Diagnoses      string `json:"diagnoses"`
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	Solutions      string `json:"Solutions"`
+=======
+	Solutions      string `json:"solutions"`
+>>>>>>> Stashed changes
 =======
 	Solutions      string `json:"solutions"`
 >>>>>>> Stashed changes
@@ -45,7 +53,11 @@ type MedicalRecordUpdateResponse struct {
 	Symptomps      string `json:"symptomps"`
 	Diagnoses      string `json:"diagnoses"`
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	Solutions      string `json:"Solutions"`
+=======
+	Solutions      string `json:"solutions"`
+>>>>>>> Stashed changes
 =======
 	Solutions      string `json:"solutions"`
 >>>>>>> Stashed changes
