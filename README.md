@@ -69,11 +69,8 @@ Here is the list of environment variables required in the file`.env`:
 
 - Duplicate the `.env.example` file as `.env` and create it automatically if it is not already available
 
-  ``bash
+  ```bash
   cp -n .env.example .env
-
-  ```
-
   ```
 
 - Fill in the environment variable values in `.env` with your own environment
