@@ -53,19 +53,11 @@ func ConvertMedicalRecordResponse(medicalRecords []domain.MedicalRecord) []web.C
 		medicalRecordResponse := web.ConvertMedicalRecordResponse {
 			ID: 	  medicalRecord.ID,
 			RegistrationID: medicalRecord.RegistrationID,
-<<<<<<< Updated upstream
-			PatientName: medicalRecord.PatientName,
-			DoctorName: medicalRecord.DoctorName,
-			Symptomps:     medicalRecord.Symptomps,
-			Diagnoses:    medicalRecord.Diagnoses,
-			Solutions: medicalRecord.Solutions,
-=======
 			Symptomps:     medicalRecord.Symptomps,
 			Diagnoses:    medicalRecord.Diagnoses,
 			Solutions: medicalRecord.Solutions,
 			PatientName: medicalRecord.PatientName,
 			DoctorName: medicalRecord.DoctorName,
->>>>>>> Stashed changes
 		}
 		results = append(results, medicalRecordResponse)
 	}

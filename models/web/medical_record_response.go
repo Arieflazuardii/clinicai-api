@@ -8,13 +8,7 @@ type MedicalRecordResponse struct {
 	Registration   *domain.Registration `json:"registration"`
 	Symptomps      string               `json:"symptomps"`
 	Diagnoses      string               `json:"diagnoses"`
-<<<<<<< Updated upstream
-	Solutions      string               `json:"Solutions"`
-	PatientName string `json:"patient_name"`
-	DoctorName string `json:"doctor_name"`
-=======
 	Solutions      string               `json:"solutions"`
->>>>>>> Stashed changes
 }
 
 type ConvertMedicalRecordResponse struct {
@@ -32,11 +26,7 @@ type MedicalRecordCreateResponse struct {
 	RegistrationID uint   `json:"RegistrationID"`
 	Symptomps      string `json:"symptomps"`
 	Diagnoses      string `json:"diagnoses"`
-<<<<<<< Updated upstream
-	Solutions      string `json:"Solutions"`
-=======
 	Solutions      string `json:"solutions"`
->>>>>>> Stashed changes
 }
 
 type MedicalRecordUpdateResponse struct {
@@ -44,9 +34,5 @@ type MedicalRecordUpdateResponse struct {
 	RegistrationID uint   `json:"RegistrationID"`
 	Symptomps      string `json:"symptomps"`
 	Diagnoses      string `json:"diagnoses"`
-<<<<<<< Updated upstream
-	Solutions      string `json:"Solutions"`
-=======
 	Solutions      string `json:"solutions"`
->>>>>>> Stashed changes
 }
