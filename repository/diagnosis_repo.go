@@ -48,7 +48,7 @@ func (repository *DiagnosisRepositoryImpl) FindById(id int) (*domain.Diagnosis, 
 	LEFT JOIN patients ON registrations.patient_id = patients.id
 	LEFT JOIN doctors ON registrations.doctor_id = doctors.id
 	LEFT JOIN schedules ON registrations.schedule_id = schedules.id
-	WHERE registrations.id = ?`
+	WHERE diagnoses.registration_id = ? AND registrations.deleted_at IS NULL`
 	result := repository.DB.Raw(query, id).Scan(&diagnosis)
 
 	if result.Error != nil {
@@ -60,7 +60,7 @@ func (repository *DiagnosisRepositoryImpl) FindById(id int) (*domain.Diagnosis, 
 
 func (repository *DiagnosisRepositoryImpl) FindAll() ([]domain.Diagnosis, error) {
 	diagnosis := []domain.Diagnosis{}
-	query := "SELECT diagnosis.* FROM diagnosis"
+	query := "SELECT diagnoses.* FROM diagnosis WHERE diagnoses.deleted_at IS NULL"
 	result := repository.DB.Raw(query).Scan(&diagnosis)
 	if result.Error != nil {
 		return nil, result.Error
