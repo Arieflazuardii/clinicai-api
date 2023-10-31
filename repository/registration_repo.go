@@ -84,7 +84,15 @@ func (repository *RegistrationRepositoryImpl) CreateDiagnosis(diagnosis *domain.
 }
 
 func (repository *RegistrationRepositoryImpl) Update(registration *domain.Registration, id int) (*domain.Registration, error){
+<<<<<<< Updated upstream
 	result := repository.DB.Table("registrations").Where("id = ?", id).Updates(domain.Registration{PatientID: registration.PatientID, DoctorID: registration.DoctorID, ScheduleID: registration.ScheduleID, Complaint: registration.Complaint})
+=======
+	result := repository.DB.Table("registrations").Where("id = ?", id).Updates(domain.Registration{
+		PatientID: registration.PatientID, 
+		DoctorID: registration.DoctorID, 
+		ScheduleID: registration.ScheduleID, 
+		Complaint: registration.Complaint})
+>>>>>>> Stashed changes
 	if result.Error != nil {
 		return nil, result.Error
 	}
@@ -120,7 +128,11 @@ func (repository *RegistrationRepositoryImpl) FindById(id int) (*domain.Registra
 	LEFT JOIN patients ON registrations.patient_id = patients.id
 	LEFT JOIN doctors ON registrations.doctor_id = doctors.id
 	LEFT JOIN schedules ON registrations.schedule_id = schedules.id
+<<<<<<< Updated upstream
 	WHERE registrations.id = ?`
+=======
+	WHERE registrations.id = ? AND registrations.deleted_at IS NULL`
+>>>>>>> Stashed changes
 
 	result := repository.DB.Raw(query, id).Scan(&registration)
 	if result.Error != nil {
@@ -138,7 +150,12 @@ func (repository *RegistrationRepositoryImpl) FindAll() ([]domain.Registration, 
 	FROM registrations 
 	LEFT JOIN patients ON registrations.patient_id = patients.id
 	LEFT JOIN doctors ON registrations.doctor_id = doctors.id
+<<<<<<< Updated upstream
 	LEFT JOIN schedules ON registrations.schedule_id = schedules.id`
+=======
+	LEFT JOIN schedules ON registrations.schedule_id = schedules.id
+	WHERE registrations.deleted_at IS NULL`
+>>>>>>> Stashed changes
 	result := repository.DB.Raw(query).Scan(&registration)
 	if result.Error != nil {
 		return nil, result.Error
@@ -170,7 +187,11 @@ func (repository *RegistrationRepositoryImpl) FindByPatient(id int) ([]domain.Re
 	LEFT JOIN patients ON registrations.patient_id = patients.id
 	LEFT JOIN doctors ON registrations.doctor_id = doctors.id
 	LEFT JOIN schedules ON registrations.schedule_id = schedules.id
+<<<<<<< Updated upstream
 	where patients.id = (?)
+=======
+	where patients.id = (?) AND registrations.deleted_at IS NULL
+>>>>>>> Stashed changes
 	`
 	result := repository.DB.Raw(query, id).Scan(&registration)
 

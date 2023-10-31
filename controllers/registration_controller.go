@@ -6,6 +6,10 @@ import (
 	"clinicai-api/utils/helpers"
 	"clinicai-api/utils/helpers/middleware"
 	res "clinicai-api/utils/response"
+<<<<<<< Updated upstream
+=======
+	"fmt"
+>>>>>>> Stashed changes
 	"net/http"
 	"os"
 	"strconv"
@@ -83,7 +87,11 @@ func (c *RegistrationControllerImpl) CreateRegistrationController(ctx echo.Conte
 		}
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Get Registration Data Error"))
 	}
+<<<<<<< Updated upstream
 
+=======
+	fmt.Println(result.ID)
+>>>>>>> Stashed changes
 	results := res.DiagnosisDomainToDiagnosisResponse(result, registrationResult)
 
 	return ctx.JSON(http.StatusCreated, helpers.SuccessResponse("Succesfully create Registration", results))
@@ -101,7 +109,11 @@ func (c *RegistrationControllerImpl) UpdateRegistrationController(ctx echo.Conte
 	if err != nil {
 		return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("Invalid Client Input"))
 	}
+<<<<<<< Updated upstream
 	result, err := c.RegistrationService.UpdateRegistration(ctx, registrationUpdateRequest, registrationIdInt)
+=======
+	_, err = c.RegistrationService.UpdateRegistration(ctx, registrationUpdateRequest, registrationIdInt)
+>>>>>>> Stashed changes
 	if err != nil {
 		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("Invalid validation"))
@@ -112,7 +124,16 @@ func (c *RegistrationControllerImpl) UpdateRegistrationController(ctx echo.Conte
 		}
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Update registration error"))
 	}
+<<<<<<< Updated upstream
 	response := res.UpdateRegistrationDomainToRegistrationResponse(result)
+=======
+	results, err := c.RegistrationService.FindById(ctx, registrationIdInt)
+	if err != nil {
+		return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("invalid client input"))
+	}
+
+	response := res.UpdateRegistrationDomainToRegistrationResponse(results)
+>>>>>>> Stashed changes
 	return ctx.JSON(http.StatusOK, helpers.SuccessResponse("Succesfully Updated Registration Data", response))
 }
 
