@@ -10,28 +10,40 @@ type RegistrationResponse struct {
 
 type CreateRegistrationResponse struct {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	PatientID  uint   `json:"patientId"`
 	DoctorID   uint   `json:"doctorId"`
 	ScheduleID uint   `json:"scheduleId"`
 =======
+=======
+>>>>>>> Stashed changes
 	ID         uint   `json:"id"`
 	PatientID  uint   `json:"patientID"`
 	DoctorID   uint   `json:"doctorID"`
 	ScheduleID uint   `json:"scheduleID"`
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	Complaint  string `json:"complaint"`
 }
 
 type UpdateRegistrationResponse struct {
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	PatientID  uint   `json:"patientId"`
 	DoctorID   uint   `json:"doctorId"`
 	ScheduleID uint   `json:"scheduleId"`
 =======
+=======
+>>>>>>> Stashed changes
 	ID         uint   `json:"id"`
 	PatientID  uint   `json:"patientID"`
 	DoctorID   uint   `json:"doctorID"`
 	ScheduleID uint   `json:"scheduleID"`
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	Complaint  string `json:"complaint"`
 }

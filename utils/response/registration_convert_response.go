@@ -29,6 +29,10 @@ func RegistrationDomainToRegistrationResponse(registration *domain.Registration)
 func CreateRegistrationDomainToRegistrationResponse(registration *domain.Registration) web.CreateRegistrationResponse{
 	return web.CreateRegistrationResponse{
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+		ID: registration.ID,
+>>>>>>> Stashed changes
 =======
 		ID: registration.ID,
 >>>>>>> Stashed changes
@@ -42,6 +46,10 @@ func CreateRegistrationDomainToRegistrationResponse(registration *domain.Registr
 func UpdateRegistrationDomainToRegistrationResponse(registration *domain.Registration) web.CreateRegistrationResponse{
 	return web.CreateRegistrationResponse{
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+		ID: registration.ID,
+>>>>>>> Stashed changes
 =======
 		ID: registration.ID,
 >>>>>>> Stashed changes
@@ -58,6 +66,10 @@ func ConvertRegistrationResponse(registrations []domain.Registration) []web.Regi
 	for _, registration := range registrations {
 		registrationResponse := web.RegistrationResponse{
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+			ID: registration.ID,
+>>>>>>> Stashed changes
 =======
 			ID: registration.ID,
 >>>>>>> Stashed changes
