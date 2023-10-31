@@ -16,6 +16,14 @@ func ScheduleSchemaToScheduleDomain(schedule *schema.Schedule) *domain.Schedule 
 
 func ScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.ScheduleResponse {
 	return web.ScheduleResponse{
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+		ID: 	  schedule.ID,
+=======
+		ID: schedule.ID,
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 		DoctorID: schedule.DoctorID,
 		DoctorName: schedule.DoctorName,
 		Date:     schedule.Date,
@@ -25,6 +33,14 @@ func ScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.ScheduleRes
 
 func CreateScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.ScheduleResponse {
 	return web.ScheduleResponse{
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+		ID: 	  schedule.ID,
+=======
+		ID: schedule.ID,
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 		DoctorID: schedule.DoctorID,
 		DoctorName: schedule.DoctorName,
 		Date:     schedule.Date,
@@ -34,7 +50,16 @@ func CreateScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.Sched
 
 func UpdateScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.ScheduleUpdateResponse {
 	return web.ScheduleUpdateResponse{
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+		ID: 	  schedule.ID,
+=======
+		ID: schedule.ID,
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 		DoctorID: schedule.DoctorID,
+		DoctorName: schedule.DoctorName,
 		Date:     schedule.Date,
 		Quota:    schedule.Quota,
 	}
@@ -43,7 +68,17 @@ func UpdateScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.Sched
 func ConvertScheduleResponse(schedules []domain.Schedule) []web.ConvertScheduleResponse {
 	var results []web.ConvertScheduleResponse
 	for _, schedule := range schedules {
+<<<<<<< Updated upstream
 		scheduleResponse := web.ConvertScheduleResponse {
+=======
+<<<<<<< Updated upstream
+		scheduleResponse := web.ScheduleResponse {
+			ID: 	  schedule.ID,
+=======
+		scheduleResponse := web.ConvertScheduleResponse {
+			ID: schedule.ID,
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 			DoctorID: schedule.DoctorID,
 			DoctorName: schedule.DoctorName,
 			Date:     schedule.Date,
