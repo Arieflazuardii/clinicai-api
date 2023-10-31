@@ -16,6 +16,7 @@ func DiagnosisSchemaToDiagnosisDomain(dianogsis *schema.Diagnosis) *domain.Diagn
 
 func DiagnosisDomainToDiagnosisResponse(dianogsis *domain.Diagnosis, registration *domain.Registration) web.DiagnosisResponse {
 	return web.DiagnosisResponse{
+		ID:				dianogsis.ID,
 		RegistrationID: dianogsis.RegistrationID,
 		Registration: registration,
 		OpenAIResult:   dianogsis.OpenAIResult,
@@ -25,6 +26,7 @@ func DiagnosisDomainToDiagnosisResponse(dianogsis *domain.Diagnosis, registratio
 
 func CreateDiagnosisDomainToDiagnosisResponse(dianogsis *domain.Diagnosis) web.DiagnosisResponse {
 	return web.DiagnosisResponse{
+		ID:				dianogsis.ID,
 		RegistrationID: dianogsis.RegistrationID,
 		OpenAIResult:   dianogsis.OpenAIResult,
 	}
@@ -34,6 +36,7 @@ func ConvertDiagnosisResponse(diagnostic []domain.Diagnosis) []web.DiagnosisResp
 	var results []web.DiagnosisResponse
 	for _, dianogsis := range diagnostic {
 		dianogsisResponse := web.DiagnosisResponse{
+			ID:				dianogsis.ID,
 			RegistrationID: dianogsis.RegistrationID,
 			OpenAIResult: dianogsis.OpenAIResult,
 		}

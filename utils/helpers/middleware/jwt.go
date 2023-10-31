@@ -66,5 +66,4 @@ func ExtractTokenDoctorId(e echo.Context) float64 {
 		return DoctorId
 	}
 	return 0
-
 }
