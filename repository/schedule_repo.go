@@ -65,23 +65,11 @@ func (repository *ScheduleRepositoryImpl) FindById(id int) (*domain.Schedule, er
 	if err := repository.DB.First(&schedule, id).Error; err != nil {
 		return nil, err
 	}
-<<<<<<< Updated upstream
-	query := `SELECT schedules.*, doctors.name AS doctor_name
-	FROM schedules 
-	LEFT JOIN doctors ON schedules.doctor_id = doctors.id
-	WHERE schedules.id = ?`
-
-=======
-<<<<<<< Updated upstream
-	query := "SELECT * FROM schedules WHERE schedules.id = ?"
-=======
 	query := `SELECT schedules.*, doctors.name AS doctor_name
 	FROM schedules 
 	LEFT JOIN doctors ON schedules.doctor_id = doctors.id
 	WHERE schedules.id = ? AND schedules.deleted_at IS NULL`
 
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 	result := repository.DB.Raw(query, id).Scan(&schedule)
 
 	if result.Error != nil {
@@ -91,36 +79,7 @@ func (repository *ScheduleRepositoryImpl) FindById(id int) (*domain.Schedule, er
 	return &schedule, nil
 }
 
-<<<<<<< Updated upstream
-func (repository *ScheduleRepositoryImpl) FindByDoctor(id int) ([]domain.Schedule, error) {
-	var schedule []domain.Schedule
 
-	if err := repository.DB.First(&schedule, id).Error; err != nil {
-		return nil, err
-	}
-	query := `SELECT schedules.*, doctors.name AS doctor_name
-	FROM schedules 
-	LEFT JOIN doctors ON schedules.doctor_id = doctors.id
-	where doctors.id = (?)
-	`
-	result := repository.DB.Raw(query, id).Scan(&schedule)
-
-	if result.Error != nil {
-		return nil, result.Error
-	}
-
-	return schedule, nil
-}
-
-func (repository *ScheduleRepositoryImpl) GetScheduleQuota(scheduleID int) (int, error) {
-	var scheduleQuota int
-	query := "SELECT quota FROM schedules WHERE id = ?"
-=======
-<<<<<<< Updated upstream
-func (repository *ScheduleRepositoryImpl) GetScheduleQuota(scheduleID int) (int, error) {
-	var scheduleQuota int
-	query := "SELECT quota FROM schedule WHERE id = ?"
-=======
 func (repository *ScheduleRepositoryImpl) FindByDoctor(id int) ([]domain.Schedule, error) {
 	var schedule []domain.Schedule
 
@@ -144,8 +103,6 @@ func (repository *ScheduleRepositoryImpl) FindByDoctor(id int) ([]domain.Schedul
 func (repository *ScheduleRepositoryImpl) GetScheduleQuota(scheduleID int) (int, error) {
 	var scheduleQuota int
 	query := "SELECT quota FROM schedules WHERE id = (?) AND schedules.deleted_at IS NULL"
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 	result := repository.DB.Raw(query, scheduleID).Scan(&scheduleQuota)
 
 	if result.Error != nil {
@@ -157,20 +114,10 @@ func (repository *ScheduleRepositoryImpl) GetScheduleQuota(scheduleID int) (int,
 
 func (repository *ScheduleRepositoryImpl) FindAll() ([]domain.Schedule, error) {
 	schedule := []domain.Schedule{}
-<<<<<<< Updated upstream
-	query := `SELECT schedules.*, doctors.name AS doctor_name
-	FROM schedules 
-	LEFT JOIN doctors ON schedules.doctor_id = doctors.id`
-=======
-<<<<<<< Updated upstream
-	query := "SELECT schedules.* FROM schedules"
-=======
 	query := `SELECT schedules.*, doctors.name AS doctor_name
 	FROM schedules 
 	LEFT JOIN doctors ON schedules.doctor_id = doctors.id
 	WHERE schedules.deleted_at IS NULL`
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 	result := repository.DB.Raw(query).Scan(&schedule)
 	if result.Error != nil {
 		return nil, result.Error
