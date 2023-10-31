@@ -7,8 +7,11 @@ import (
 	"clinicai-api/utils/helpers/middleware"
 	res "clinicai-api/utils/response"
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 	"fmt"
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	"net/http"
 	"os"
@@ -88,9 +91,12 @@ func (c *RegistrationControllerImpl) CreateRegistrationController(ctx echo.Conte
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Get Registration Data Error"))
 	}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 
 =======
 	fmt.Println(result.ID)
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	results := res.DiagnosisDomainToDiagnosisResponse(result, registrationResult)
 
@@ -110,7 +116,11 @@ func (c *RegistrationControllerImpl) UpdateRegistrationController(ctx echo.Conte
 		return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("Invalid Client Input"))
 	}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	result, err := c.RegistrationService.UpdateRegistration(ctx, registrationUpdateRequest, registrationIdInt)
+=======
+	_, err = c.RegistrationService.UpdateRegistration(ctx, registrationUpdateRequest, registrationIdInt)
+>>>>>>> Stashed changes
 =======
 	_, err = c.RegistrationService.UpdateRegistration(ctx, registrationUpdateRequest, registrationIdInt)
 >>>>>>> Stashed changes
@@ -125,14 +135,20 @@ func (c *RegistrationControllerImpl) UpdateRegistrationController(ctx echo.Conte
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Update registration error"))
 	}
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 	response := res.UpdateRegistrationDomainToRegistrationResponse(result)
 =======
+=======
+>>>>>>> Stashed changes
 	results, err := c.RegistrationService.FindById(ctx, registrationIdInt)
 	if err != nil {
 		return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("invalid client input"))
 	}
 
 	response := res.UpdateRegistrationDomainToRegistrationResponse(results)
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 	return ctx.JSON(http.StatusOK, helpers.SuccessResponse("Succesfully Updated Registration Data", response))
 }
