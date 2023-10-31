@@ -38,12 +38,18 @@ func PatientSchemaToPatientDomain(patient *schema.Patient) *domain.Patient {
 func PatientDomainToPatientResponse(patient *domain.Patient) web.PatientResponse {
 	return web.PatientResponse{
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 <<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 		ID: 		  patient.ID,
 =======
 		ID: 	     patient.ID,
 >>>>>>> Stashed changes
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 		Name:         patient.Name,
 		Email:        patient.Email,
@@ -61,12 +67,18 @@ func ConvertPatientResponse(patients []domain.Patient) []web.PatientResponse {
 	for _, patient := range patients {
 		patientResponse := web.PatientResponse{
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
 =======
 <<<<<<< Updated upstream
+=======
+>>>>>>> Stashed changes
 			ID:           patient.ID,
 =======
 			ID: 		  patient.ID,
 >>>>>>> Stashed changes
+<<<<<<< Updated upstream
+>>>>>>> Stashed changes
+=======
 >>>>>>> Stashed changes
 			Name:         patient.Name,
 			Email:        patient.Email,
