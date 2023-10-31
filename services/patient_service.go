@@ -89,11 +89,6 @@ func (service * PatientServiceImpl) UpdatePatient(ctx echo.Context, request web.
 		return nil, fmt.Errorf("patient not found")
 	}
 
-	existingPatientEmail, _ := service.PatientRepository.FindByEmail(request.Email)
-	if existingPatientEmail != nil {
-		return nil, fmt.Errorf("email already exists")
-	}
-
 	patient := req.PatientUpdateRequestToPatientDomain(request)
 	patient.Password = helpers.HashPassword(patient.Password)
 	result, err := service.PatientRepository.Update(patient, id)

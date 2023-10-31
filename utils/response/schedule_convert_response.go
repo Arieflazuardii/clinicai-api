@@ -8,6 +8,7 @@ import (
 
 func ScheduleSchemaToScheduleDomain(schedule *schema.Schedule) *domain.Schedule {
 	return &domain.Schedule{
+		ID: schedule.ID,
 		DoctorID: schedule.DoctorID,
 		Date:     schedule.Date,
 		Quota:    schedule.Quota,

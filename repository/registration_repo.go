@@ -165,9 +165,6 @@ func (repository *RegistrationRepositoryImpl) Delete(id int) error {
 func (repository *RegistrationRepositoryImpl) FindByPatient(id int) ([]domain.Registration, error) {
 	var registration []domain.Registration
 
-	if err := repository.DB.First(&registration, id).Error; err != nil {
-		return nil, err
-	}
 	query := `SELECT registrations.*, 
 	patients.name AS patient_name, 
 	doctors.name AS doctor_name, 
@@ -176,8 +173,7 @@ func (repository *RegistrationRepositoryImpl) FindByPatient(id int) ([]domain.Re
 	LEFT JOIN patients ON registrations.patient_id = patients.id
 	LEFT JOIN doctors ON registrations.doctor_id = doctors.id
 	LEFT JOIN schedules ON registrations.schedule_id = schedules.id
-	where patients.id = (?) AND registrations.deleted_at IS NULL
-	`
+	where patients.id = (?) AND registrations.deleted_at IS NULL`
 	result := repository.DB.Raw(query, id).Scan(&registration)
 
 	if result.Error != nil {
