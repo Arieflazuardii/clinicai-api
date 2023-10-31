@@ -8,6 +8,8 @@ type MedicalRecordResponse struct {
 	Registration   *domain.Registration `json:"registration"`
 	Symptomps      string               `json:"symptomps"`
 	Diagnoses      string               `json:"diagnoses"`
+	PatientName string `json:"patient_name"`
+	DoctorName string `json:"doctor_name"`
 	Solutions      string               `json:"solutions"`
 }
 

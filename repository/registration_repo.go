@@ -144,6 +144,7 @@ func (repository *RegistrationRepositoryImpl) FindAll() ([]domain.Registration, 
 	LEFT JOIN doctors ON registrations.doctor_id = doctors.id
 	LEFT JOIN schedules ON registrations.schedule_id = schedules.id
 	WHERE registrations.deleted_at IS NULL`
+
 	result := repository.DB.Raw(query).Scan(&registration)
 	if result.Error != nil {
 		return nil, result.Error
@@ -175,11 +176,7 @@ func (repository *RegistrationRepositoryImpl) FindByPatient(id int) ([]domain.Re
 	LEFT JOIN patients ON registrations.patient_id = patients.id
 	LEFT JOIN doctors ON registrations.doctor_id = doctors.id
 	LEFT JOIN schedules ON registrations.schedule_id = schedules.id
-<<<<<<< Updated upstream
-	where patients.id = (?)
-=======
 	where patients.id = (?) AND registrations.deleted_at IS NULL
->>>>>>> Stashed changes
 	`
 	result := repository.DB.Raw(query, id).Scan(&registration)
 

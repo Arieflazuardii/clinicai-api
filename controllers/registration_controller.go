@@ -101,6 +101,8 @@ func (c *RegistrationControllerImpl) UpdateRegistrationController(ctx echo.Conte
 		return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("Invalid Client Input"))
 	}
 	_ , err = c.RegistrationService.UpdateRegistration(ctx, registrationUpdateRequest, registrationIdInt)
+
+	result, err := c.RegistrationService.UpdateRegistration(ctx, registrationUpdateRequest, registrationIdInt)
 	if err != nil {
 		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("Invalid validation"))
@@ -111,12 +113,14 @@ func (c *RegistrationControllerImpl) UpdateRegistrationController(ctx echo.Conte
 		}
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Update registration error"))
 	}
+
+	response := res.UpdateRegistrationDomainToRegistrationResponse(result)
 	results, err := c.RegistrationService.FindById(ctx, registrationIdInt)
 	if err != nil {
 		return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("invalid client input"))
 	}
 
-	response := res.UpdateRegistrationDomainToRegistrationResponse(results)
+	response = res.UpdateRegistrationDomainToRegistrationResponse(results)
 	return ctx.JSON(http.StatusOK, helpers.SuccessResponse("Succesfully Updated Registration Data", response))
 }
 

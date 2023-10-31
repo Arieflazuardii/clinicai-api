@@ -16,7 +16,7 @@ func ScheduleSchemaToScheduleDomain(schedule *schema.Schedule) *domain.Schedule 
 
 func ScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.ScheduleResponse {
 	return web.ScheduleResponse{
-		ID: 	  schedule.ID,
+		ID: schedule.ID,
 		DoctorID: schedule.DoctorID,
 		DoctorName: schedule.DoctorName,
 		Date:     schedule.Date,
@@ -26,7 +26,7 @@ func ScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.ScheduleRes
 
 func CreateScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.ScheduleResponse {
 	return web.ScheduleResponse{
-		ID: schedule.ID,
+		ID: 	  schedule.ID,
 		DoctorID: schedule.DoctorID,
 		DoctorName: schedule.DoctorName,
 		Date:     schedule.Date,
@@ -36,7 +36,7 @@ func CreateScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.Sched
 
 func UpdateScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.ScheduleUpdateResponse {
 	return web.ScheduleUpdateResponse{
-		ID: 	  schedule.ID,
+		ID: schedule.ID,
 		DoctorID: schedule.DoctorID,
 		DoctorName: schedule.DoctorName,
 		Date:     schedule.Date,
