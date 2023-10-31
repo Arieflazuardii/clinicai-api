@@ -15,6 +15,14 @@ func DoctorDomainToDoctorLoginResponse(doctor *domain.Doctor) web.DoctorLoginRes
 
 func DoctorSchemaToDoctorDomain(doctor *schema.Doctor) *domain.Doctor {
 	return &domain.Doctor{
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+		ID:           doctor.ID,
+=======
+		ID: doctor.ID,
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 		Name: 	      doctor.Name,
 		Email:        doctor.Email,
 		Password: 	  doctor.Password,
@@ -27,6 +35,14 @@ func DoctorSchemaToDoctorDomain(doctor *schema.Doctor) *domain.Doctor {
 
 func DoctorDomainToDoctorResponse(doctor *domain.Doctor) web.DoctorResponse {
 	return web.DoctorResponse{
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+		ID: 		  doctor.ID,
+=======
+		ID: doctor.ID,
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 		Name:         doctor.Name,
 		Email:        doctor.Email,
 		Password:     doctor.Password,
@@ -41,6 +57,14 @@ func ConvertDoctorResponse(doctors []domain.Doctor) []web.DoctorResponse {
 	var results []web.DoctorResponse
 	for _, doctor := range doctors {
 		doctorResponse := web.DoctorResponse{
+<<<<<<< Updated upstream
+=======
+<<<<<<< Updated upstream
+			ID:          doctor.ID,
+=======
+			ID: doctor.ID,
+>>>>>>> Stashed changes
+>>>>>>> Stashed changes
 			Name:        doctor.Name,
 			Email:       doctor.Email,
 			Password:    doctor.Password,
