@@ -16,7 +16,7 @@ type DoctorResponse struct {
 	Email           string `json:"email"`
 	Password        string `json:"password"`
 	Nik             string `json:"nik"`
-	Specializations string `json:"specializations"`
+	Specialization string `json:"specialization"`
 	Gender          string `json:"gender"`
 	Phone_number    string `json:"phone_number"`
 =======
