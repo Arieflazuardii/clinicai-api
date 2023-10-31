@@ -15,6 +15,7 @@ func PatientDomainToPatientLoginResponse(patient *domain.Patient) web.PatientLog
 
 func PatientSchemaToPatientDomain(patient *schema.Patient) *domain.Patient {
 	return &domain.Patient{
+		ID:           patient.ID,
 		Name: 	      patient.Name,
 		Email:        patient.Email,
 		Password: 	  patient.Password,
@@ -29,6 +30,7 @@ func PatientSchemaToPatientDomain(patient *schema.Patient) *domain.Patient {
 
 func PatientDomainToPatientResponse(patient *domain.Patient) web.PatientResponse {
 	return web.PatientResponse{
+		ID: 		  patient.ID,
 		Name:         patient.Name,
 		Email:        patient.Email,
 		Nik:          patient.Nik,
@@ -44,6 +46,7 @@ func ConvertPatientResponse(patients []domain.Patient) []web.PatientResponse {
 	var results []web.PatientResponse
 	for _, patient := range patients {
 		patientResponse := web.PatientResponse{
+			ID:           patient.ID,
 			Name:         patient.Name,
 			Email:        patient.Email,
 			Nik:          patient.Nik,

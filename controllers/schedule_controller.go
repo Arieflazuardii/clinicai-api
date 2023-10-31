@@ -43,7 +43,16 @@ func (c *ScheduleControllerImpl) CreateScheduleController(ctx echo.Context)  err
 		}
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Create Schedule Error"))
 	}
-	response := res.CreateScheduleDomainToScheduleResponse(result)
+
+	results, err := c.ScheduleService.FindById(ctx, int(result.ID))
+	if err != nil {
+		if strings.Contains(err.Error(), "schedule not found"){
+			return ctx.JSON(http.StatusNotFound, helpers.ErrorResponse("Schedule not found"))
+		}
+		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Get Schedule Data Error"))
+	}
+
+	response := res.CreateScheduleDomainToScheduleResponse(results)
 
 	return ctx.JSON(http.StatusCreated, helpers.SuccessResponse("Succesfully create Schedule", response))
 }
@@ -60,7 +69,7 @@ func (c *ScheduleControllerImpl) UpdateScheduleController(ctx echo.Context) erro
 	if err != nil {
 		return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("Invalid Client Input"))
 	}
-	result, err := c.ScheduleService.UpdateSchedule(ctx, scheduleUpdateRequest, scheduleIdInt)
+	_ , err = c.ScheduleService.UpdateSchedule(ctx, scheduleUpdateRequest, scheduleIdInt)
 	if err != nil {
 		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("Invalid validation"))
@@ -71,7 +80,16 @@ func (c *ScheduleControllerImpl) UpdateScheduleController(ctx echo.Context) erro
 		}
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Update schedule error"))
 	}
-	response := res.UpdateScheduleDomainToScheduleResponse(result)
+
+	results, err := c.ScheduleService.FindById(ctx, scheduleIdInt)
+	if err != nil {
+		if strings.Contains(err.Error(), "schedule not found"){
+			return ctx.JSON(http.StatusNotFound, helpers.ErrorResponse("Schedule not found"))
+		}
+		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Get Schedule Data Error"))
+	}
+	
+	response := res.UpdateScheduleDomainToScheduleResponse(results)
 	return ctx.JSON(http.StatusOK, helpers.SuccessResponse("Succesfully Updated Schedule Data", response))
 }
 

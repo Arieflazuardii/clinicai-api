@@ -68,7 +68,7 @@ func (repository *ScheduleRepositoryImpl) FindById(id int) (*domain.Schedule, er
 	query := `SELECT schedules.*, doctors.name AS doctor_name
 	FROM schedules 
 	LEFT JOIN doctors ON schedules.doctor_id = doctors.id
-	WHERE schedules.id = ?`
+	WHERE schedules.id = ? AND schedules.deleted_at IS NULL`
 
 	result := repository.DB.Raw(query, id).Scan(&schedule)
 
@@ -79,6 +79,7 @@ func (repository *ScheduleRepositoryImpl) FindById(id int) (*domain.Schedule, er
 	return &schedule, nil
 }
 
+
 func (repository *ScheduleRepositoryImpl) FindByDoctor(id int) ([]domain.Schedule, error) {
 	var schedule []domain.Schedule
 
@@ -88,7 +89,7 @@ func (repository *ScheduleRepositoryImpl) FindByDoctor(id int) ([]domain.Schedul
 	query := `SELECT schedules.*, doctors.name AS doctor_name
 	FROM schedules 
 	LEFT JOIN doctors ON schedules.doctor_id = doctors.id
-	where doctors.id = (?)
+	where doctors.id = (?) AND schedules.deleted_at IS NULL
 	`
 	result := repository.DB.Raw(query, id).Scan(&schedule)
 
@@ -101,7 +102,7 @@ func (repository *ScheduleRepositoryImpl) FindByDoctor(id int) ([]domain.Schedul
 
 func (repository *ScheduleRepositoryImpl) GetScheduleQuota(scheduleID int) (int, error) {
 	var scheduleQuota int
-	query := "SELECT quota FROM schedules WHERE id = ?"
+	query := "SELECT quota FROM schedules WHERE id = (?) AND schedules.deleted_at IS NULL"
 	result := repository.DB.Raw(query, scheduleID).Scan(&scheduleQuota)
 
 	if result.Error != nil {
@@ -115,7 +116,8 @@ func (repository *ScheduleRepositoryImpl) FindAll() ([]domain.Schedule, error) {
 	schedule := []domain.Schedule{}
 	query := `SELECT schedules.*, doctors.name AS doctor_name
 	FROM schedules 
-	LEFT JOIN doctors ON schedules.doctor_id = doctors.id`
+	LEFT JOIN doctors ON schedules.doctor_id = doctors.id
+	WHERE schedules.deleted_at IS NULL`
 	result := repository.DB.Raw(query).Scan(&schedule)
 	if result.Error != nil {
 		return nil, result.Error

@@ -8,6 +8,7 @@ import (
 
 func ScheduleSchemaToScheduleDomain(schedule *schema.Schedule) *domain.Schedule {
 	return &domain.Schedule{
+		ID: schedule.ID,
 		DoctorID: schedule.DoctorID,
 		Date:     schedule.Date,
 		Quota:    schedule.Quota,
@@ -16,6 +17,7 @@ func ScheduleSchemaToScheduleDomain(schedule *schema.Schedule) *domain.Schedule 
 
 func ScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.ScheduleResponse {
 	return web.ScheduleResponse{
+		ID: schedule.ID,
 		DoctorID: schedule.DoctorID,
 		DoctorName: schedule.DoctorName,
 		Date:     schedule.Date,
@@ -25,6 +27,7 @@ func ScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.ScheduleRes
 
 func CreateScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.ScheduleResponse {
 	return web.ScheduleResponse{
+		ID: 	  schedule.ID,
 		DoctorID: schedule.DoctorID,
 		DoctorName: schedule.DoctorName,
 		Date:     schedule.Date,
@@ -34,7 +37,9 @@ func CreateScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.Sched
 
 func UpdateScheduleDomainToScheduleResponse(schedule *domain.Schedule) web.ScheduleUpdateResponse {
 	return web.ScheduleUpdateResponse{
+		ID: schedule.ID,
 		DoctorID: schedule.DoctorID,
+		DoctorName: schedule.DoctorName,
 		Date:     schedule.Date,
 		Quota:    schedule.Quota,
 	}
@@ -44,6 +49,7 @@ func ConvertScheduleResponse(schedules []domain.Schedule) []web.ConvertScheduleR
 	var results []web.ConvertScheduleResponse
 	for _, schedule := range schedules {
 		scheduleResponse := web.ConvertScheduleResponse {
+			ID: schedule.ID,
 			DoctorID: schedule.DoctorID,
 			DoctorName: schedule.DoctorName,
 			Date:     schedule.Date,

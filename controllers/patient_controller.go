@@ -96,7 +96,7 @@ func (c *PatientControllerImpl) GetPatientController(ctx echo.Context) error {
 	patientId := ctx.Param("id")
 	patientIdInt, err := strconv.Atoi(patientId)
 	if err != nil {
-		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("invalid param id"))
+		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("invalid param id get patient"))
 	}
 
 	result, err := c.PatientService.FindById(ctx, patientIdInt)
@@ -106,6 +106,7 @@ func (c *PatientControllerImpl) GetPatientController(ctx echo.Context) error {
 		}
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Get patient data error"))
 	}
+
 	response :=res.PatientDomainToPatientResponse(result)
 
 	return ctx.JSON(http.StatusOK, helpers.SuccessResponse("Successfully Get Data Patient", response))
@@ -128,7 +129,6 @@ func(c PatientControllerImpl) GetPatientsController(ctx echo.Context) error {
 
 func (c PatientControllerImpl) GetPatientByNameController(ctx echo.Context) error {
 	patientName := ctx.Param("name")
-	
 	result, err := c.PatientService.FindByName(ctx, patientName)
 	if err != nil {
 		if strings.Contains(err.Error(), "patient not found"){
@@ -153,7 +153,7 @@ func (c PatientControllerImpl) UpdatePatientController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("invalid client input"))
 	}
 
-	result, err := c.PatientService.UpdatePatient(ctx, patientUpdateRequest, patientIdInt)
+	_, err = c.PatientService.UpdatePatient(ctx, patientUpdateRequest, patientIdInt)
 	if err != nil {
 		if strings.Contains(err.Error(), "validation failed"){
 			return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("invalid validation"))
@@ -163,7 +163,12 @@ func (c PatientControllerImpl) UpdatePatientController(ctx echo.Context) error {
 		}
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("update patient error"))
 	}
-	response := res.PatientDomainToPatientResponse(result)
+	results, err := c.PatientService.FindById(ctx, patientIdInt)
+	if err != nil {
+		return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("invalid client input"))
+	}
+
+	response := res.PatientDomainToPatientResponse(results)
 	return ctx.JSON(http.StatusOK, helpers.SuccessResponse("Successfully updated data patient", response))
 }
 

@@ -28,6 +28,7 @@ func RegistrationDomainToRegistrationResponse(registration *domain.Registration)
 
 func CreateRegistrationDomainToRegistrationResponse(registration *domain.Registration) web.CreateRegistrationResponse{
 	return web.CreateRegistrationResponse{
+		ID: registration.ID,
 		PatientID: registration.PatientID,
 		DoctorID: registration.DoctorID,
 		ScheduleID: registration.ScheduleID,
@@ -37,6 +38,7 @@ func CreateRegistrationDomainToRegistrationResponse(registration *domain.Registr
 
 func UpdateRegistrationDomainToRegistrationResponse(registration *domain.Registration) web.CreateRegistrationResponse{
 	return web.CreateRegistrationResponse{
+		ID: registration.ID,
 		PatientID: registration.PatientID,
 		DoctorID: registration.DoctorID,
 		ScheduleID: registration.ScheduleID,
@@ -49,6 +51,7 @@ func ConvertRegistrationResponse(registrations []domain.Registration) []web.Regi
 	var results []web.RegistrationResponse
 	for _, registration := range registrations {
 		registrationResponse := web.RegistrationResponse{
+			ID: registration.ID,
 			PatientName: registration.PatientName,
 			DoctorName: registration.DoctorName,
 			ScheduleDate: registration.ScheduleDate,

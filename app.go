@@ -1,8 +1,8 @@
 package main
 
 import (
-	"clinicai-api/app/routes"
 	"clinicai-api/drivers"
+	"clinicai-api/routes"
 	"net/http"
 
 	"github.com/go-playground/validator"

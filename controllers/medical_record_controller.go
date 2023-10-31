@@ -52,7 +52,6 @@ func (c *MedicalRecordControllerImpl) CreateMedicalRecordController(ctx echo.Con
 		}
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Get medical record data error"))
 	}
-
 	response := res.MedicalRecordDomainToMedicalRecordResponse(result, resultRegistration)
 
 	return ctx.JSON(http.StatusCreated, helpers.SuccessResponse("Succesfully create MedicalRecord", response))
@@ -70,7 +69,7 @@ func (c *MedicalRecordControllerImpl) UpdateMedicalRecordController(ctx echo.Con
 	if err != nil {
 		return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("Invalid Client Input"))
 	}
-	result, err := c.MedicalRecordService.UpdateMedicalRecord(ctx, medicalRecordUpdateRequest, medicalRecordIdInt)
+	_ , err = c.MedicalRecordService.UpdateMedicalRecord(ctx, medicalRecordUpdateRequest, medicalRecordIdInt)
 	if err != nil {
 		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("Invalid validation"))
@@ -81,7 +80,15 @@ func (c *MedicalRecordControllerImpl) UpdateMedicalRecordController(ctx echo.Con
 		}
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Update medicalRecord error"))
 	}
-	response := res.UpdateMedicalRecordDomainToMedicalRecordResponse(result)
+	results, err := c.MedicalRecordService.FindById(ctx, medicalRecordIdInt)
+	if err != nil {
+		if strings.Contains(err.Error(), "medical record not found"){
+			return ctx.JSON(http.StatusNotFound, helpers.ErrorResponse("medical record not found"))
+		}
+		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Get medical record Data Error"))
+	}
+
+	response := res.UpdateMedicalRecordDomainToMedicalRecordResponse(results)
 	return ctx.JSON(http.StatusOK, helpers.SuccessResponse("Succesfully Updated MedicalRecord Data", response))
 }
 

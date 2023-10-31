@@ -9,15 +9,17 @@ type RegistrationResponse struct {
 }
 
 type CreateRegistrationResponse struct {
-	PatientID  uint   `json:"patientId"`
-	DoctorID   uint   `json:"doctorId"`
-	ScheduleID uint   `json:"scheduleId"`
+	ID         uint   `json:"id"`
+	PatientID  uint   `json:"patientID"`
+	DoctorID   uint   `json:"doctorID"`
+	ScheduleID uint   `json:"scheduleID"`
 	Complaint  string `json:"complaint"`
 }
 
 type UpdateRegistrationResponse struct {
-	PatientID  uint   `json:"patientId"`
-	DoctorID   uint   `json:"doctorId"`
-	ScheduleID uint   `json:"scheduleId"`
+	ID         uint   `json:"id"`
+	PatientID  uint   `json:"patientID"`
+	DoctorID   uint   `json:"doctorID"`
+	ScheduleID uint   `json:"scheduleID"`
 	Complaint  string `json:"complaint"`
 }

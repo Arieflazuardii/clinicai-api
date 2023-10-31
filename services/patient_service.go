@@ -95,7 +95,7 @@ func (service * PatientServiceImpl) UpdatePatient(ctx echo.Context, request web.
 	if err != nil {
 		return nil, fmt.Errorf("error when updating data patient: %s", err.Error())
 	}
-
+	
 	return result, nil
 }
 
