@@ -27,7 +27,7 @@ jobs:
           context: .
           file: ./Dockerfile
           push: true
-          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clinicai:latest
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/clinic:latest
       -  
         name: connect ssh
         uses: appleboy/ssh-action@v0.1.9
@@ -37,11 +37,11 @@ jobs:
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
           script: |
-            sudo docker stop clinicai
-            sudo docker rm clinicai
-            sudo docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/clinicai 
-            sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clinicai
-            sudo docker run --name clinicai -p 8080:8080 -d \
+            docker stop clinicai
+            docker rm clinicai
+            docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/clinic 
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clinic
+            docker run --name clinicai -p 8080:8080 -d \
             -e DB_HOST=${{secrets.DB_HOST}} \
             -e DB_PORT=${{secrets.DB_PORT}} \
             -e DB_USER=${{secrets.DB_USER}} \
@@ -50,4 +50,4 @@ jobs:
             -e SECRET_KEY=${{secrets.SECRET_KEY}}\
             -e SALT=${{secrets.SALT}} \
             -e OPENAI_KEY=${{secrets.OPENAI_KEY}} \
-            ${{ secrets.DOCKERHUB_USERNAME }}/clinicai
+            ${{ secrets.DOCKERHUB_USERNAME }}/clinic
