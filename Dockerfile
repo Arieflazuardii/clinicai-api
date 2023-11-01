@@ -1,13 +1,11 @@
 FROM golang:1.21-alpine
 
-WORKDIR /app
+COPY . /app
 
-COPY . .
+WORKDIR /app
 
 RUN go mod tidy
 
-RUN go build -o app.exe .
+RUN go build -o app .
 
-EXPOSE 8080
-
-CMD ["/app.exe"]
+CMD ["/app/app"]
