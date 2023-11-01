@@ -40,5 +40,5 @@ jobs:
             docker stop ${{ secrets.CNAME }}
             docker rm ${{ secrets.CNAME }}
             docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/clinic
-            docker pull ${{ secrets.DOCKERHUB_USERNAME }}clinic
+            docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clinic
             docker run --name ${{ secrets.CNAME }} -p 8080:8080 -d -e DB_HOST=${{secrets.DB_HOST}} -e DB_PORT=3306 -e DB_USER=${{secrets.DB_USER}} -e DB_NAME=${{secrets.DB_NAME}} -e DB_PASSWORD=${{secrets.DB_PASSWORD}} -e SECRET_KEY=${{secrets.SECRET_KEY}} -e OPENAI_KEY=${{secrets.OPENAI_KEY}} -e SALT=${{secrets.SALT}} ${{ secrets.DOCKERHUB_USERNAME }}/clinic
