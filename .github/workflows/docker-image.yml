@@ -39,7 +39,7 @@ jobs:
           script: |
             sudo docker stop clinicai
             sudo docker rm clinicai
-            sudo docker rmi ${{ secrets.DOCKERHUB_USERNAME }}clinicai
+            sudo docker rmi ${{ secrets.DOCKERHUB_USERNAME }}/clinicai 
             sudo docker pull ${{ secrets.DOCKERHUB_USERNAME }}/clinicai
             sudo docker run --name clinicai -p 8080:8080 -d \
             -e DB_HOST=${{secrets.DB_HOST}} \
