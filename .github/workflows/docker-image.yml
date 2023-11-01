@@ -49,5 +49,4 @@ jobs:
             -e DB_PASSWORD=${{secrets.DB_PASSWORD}} \
             -e SECRET_KEY=${{secrets.SECRET_KEY}}\
             -e SALT=${{secrets.SALT}} \
-            -e OPENAI_KEY=${{secrets.OPENAI_KEY}} \
-            ${{ secrets.DOCKERHUB_USERNAME }}/clinic
+            -e OPENAI_KEY=${{secrets.OPENAI_KEY}} ${{ secrets.DOCKERHUB_USERNAME }}/clinic
