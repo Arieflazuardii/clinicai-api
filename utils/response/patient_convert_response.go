@@ -18,7 +18,6 @@ func PatientSchemaToPatientDomain(patient *schema.Patient) *domain.Patient {
 		ID:           patient.ID,
 		Name: 	      patient.Name,
 		Email:        patient.Email,
-		Password: 	  patient.Password,
 		Nik:          patient.Nik,
 		Birthday:     patient.Birthday,
 		Age:          patient.Age,
