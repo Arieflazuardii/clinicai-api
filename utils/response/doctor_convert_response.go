@@ -31,7 +31,6 @@ func DoctorSchemaToDoctorDomain(doctor *schema.Doctor) *domain.Doctor {
 >>>>>>> Stashed changes
 		Name: 	      doctor.Name,
 		Email:        doctor.Email,
-		Password: 	  doctor.Password,
 		Nik:          doctor.Nik,
 		Specialization: doctor.Specialization,
 		Gender:       doctor.Gender,
@@ -57,7 +56,6 @@ func DoctorDomainToDoctorResponse(doctor *domain.Doctor) web.DoctorResponse {
 >>>>>>> Stashed changes
 		Name:         doctor.Name,
 		Email:        doctor.Email,
-		Password:     doctor.Password,
 		Nik:          doctor.Nik,
 		Specialization: doctor.Specialization,
 		Gender:       doctor.Gender,
@@ -85,7 +83,6 @@ func ConvertDoctorResponse(doctors []domain.Doctor) []web.DoctorResponse {
 >>>>>>> Stashed changes
 			Name:        doctor.Name,
 			Email:       doctor.Email,
-			Password:    doctor.Password,
 			Nik:         doctor.Nik,
 			Specialization: doctor.Specialization,
 			Gender:      doctor.Gender,
