@@ -25,7 +25,6 @@ func PatientSchemaToPatientDomain(patient *schema.Patient) *domain.Patient {
 >>>>>>> Stashed changes
 		Name: 	      patient.Name,
 		Email:        patient.Email,
-		Password: 	  patient.Password,
 		Nik:          patient.Nik,
 		Birthday:     patient.Birthday,
 		Age:          patient.Age,
