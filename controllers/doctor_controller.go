@@ -156,7 +156,7 @@ func (c DoctorControllerImpl) UpdateDoctorController(ctx echo.Context) error {
 		return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("invalid client input"))
 	}
 
-	result, err := c.DoctorService.UpdateDoctor(ctx, doctorUpdateRequest, doctorIdInt)
+	_, err = c.DoctorService.UpdateDoctor(ctx, doctorUpdateRequest, doctorIdInt)
 	if err != nil {
 		if strings.Contains(err.Error(), "validation failed"){
 			return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("invalid validation"))
@@ -166,7 +166,12 @@ func (c DoctorControllerImpl) UpdateDoctorController(ctx echo.Context) error {
 		}
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("update doctor error"))
 	}
-	response := res.DoctorDomainToDoctorResponse(result)
+	results, err := c.DoctorService.FindById(ctx, doctorIdInt)
+	if err != nil {
+		return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("invalid client input"))
+	}
+
+	response := res.DoctorDomainToDoctorResponse(results)
 	return ctx.JSON(http.StatusOK, helpers.SuccessResponse("Successfully updated data doctor", response))
 }
 

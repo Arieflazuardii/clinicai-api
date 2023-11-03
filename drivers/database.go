@@ -3,22 +3,16 @@ package drivers
 import (
 	"clinicai-api/models/schema"
 	"fmt"
+	"log"
 	"os"
-	"path/filepath"
 
-	"github.com/joho/godotenv"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
 
 var DB *gorm.DB
 
-func ConnectDB() *gorm.DB {
-	err := godotenv.Load(filepath.Join(".", ".env"))
-	if err != nil {
-		fmt.Println("error loading .env file: ")
-		os.Exit(1)
-	}
+func ConnectDB() {
 
 	dsn := fmt.Sprintf("%v:%v@tcp(%v:%v)/%v?charset=utf8mb4&parseTime=True&loc=Local",
 	os.Getenv("DB_USER"),
@@ -37,9 +31,17 @@ func ConnectDB() *gorm.DB {
 
 	fmt.Println("Connected to database")
 
-	return DB
 }
 
 func Migrate() {
-	DB.AutoMigrate(schema.Patient{}, schema.Doctor{}, schema.Schedule{})
+	err := DB.AutoMigrate(&schema.Patient{}, 
+		&schema.Doctor{}, 
+		&schema.Schedule{}, 
+		&schema.Registration{}, 
+		&schema.Diagnosis{}, 
+		&schema.MedicalRecord{})
+	if err != nil {
+		log.Fatal("Failed to Migrate Database")
+	}
+	fmt.Println("Success Migrate Database")
 }

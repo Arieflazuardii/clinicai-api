@@ -8,11 +8,12 @@ type DoctorLoginResponse struct {
 }
 
 type DoctorResponse struct {
-	Name           string `json:"name"`
-	Email          string `json:"email"`
-	Password       string `json:"password"`
-	Nik            string `json:"nik"`
+	ID              uint   `json:"id"`
+	Name            string `json:"name"`
+	Email           string `json:"email"`
+	Password        string `json:"password"`
+	Nik             string `json:"nik"`
 	Specialization string `json:"specialization"`
-	Gender         string `json:"gender"`
-	Phone_number   string `json:"phone_number"`
+	Gender          string `json:"gender"`
+	Phone_number    string `json:"phone_number"`
 }

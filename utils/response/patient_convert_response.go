@@ -15,14 +15,7 @@ func PatientDomainToPatientLoginResponse(patient *domain.Patient) web.PatientLog
 
 func PatientSchemaToPatientDomain(patient *schema.Patient) *domain.Patient {
 	return &domain.Patient{
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
 		ID:           patient.ID,
-=======
-		ID: patient.ID,
->>>>>>> Stashed changes
->>>>>>> Stashed changes
 		Name: 	      patient.Name,
 		Email:        patient.Email,
 		Nik:          patient.Nik,
@@ -36,20 +29,7 @@ func PatientSchemaToPatientDomain(patient *schema.Patient) *domain.Patient {
 
 func PatientDomainToPatientResponse(patient *domain.Patient) web.PatientResponse {
 	return web.PatientResponse{
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 		ID: 		  patient.ID,
-=======
-		ID: 	     patient.ID,
->>>>>>> Stashed changes
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 		Name:         patient.Name,
 		Email:        patient.Email,
 		Nik:          patient.Nik,
@@ -65,20 +45,7 @@ func ConvertPatientResponse(patients []domain.Patient) []web.PatientResponse {
 	var results []web.PatientResponse
 	for _, patient := range patients {
 		patientResponse := web.PatientResponse{
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-=======
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
 			ID:           patient.ID,
-=======
-			ID: 		  patient.ID,
->>>>>>> Stashed changes
-<<<<<<< Updated upstream
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 			Name:         patient.Name,
 			Email:        patient.Email,
 			Nik:          patient.Nik,

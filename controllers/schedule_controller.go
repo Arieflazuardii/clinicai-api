@@ -4,6 +4,7 @@ import (
 	"clinicai-api/models/web"
 	"clinicai-api/services"
 	"clinicai-api/utils/helpers"
+	"clinicai-api/utils/helpers/middleware"
 	res "clinicai-api/utils/response"
 	"net/http"
 	"strconv"
@@ -16,6 +17,7 @@ type ScheduleController interface {
 	CreateScheduleController(ctx echo.Context) error
 	UpdateScheduleController(ctx echo.Context) error
 	GetScheduleController(ctx echo.Context) error
+	GetScheduleControllerByDoctor(ctx echo.Context) error
 	GetAllScheduleController(ctx echo.Context) error
 	DeleteScheduleController(ctx echo.Context) error
 }
@@ -41,7 +43,16 @@ func (c *ScheduleControllerImpl) CreateScheduleController(ctx echo.Context)  err
 		}
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Create Schedule Error"))
 	}
-	response := res.CreateScheduleDomainToScheduleResponse(result)
+
+	results, err := c.ScheduleService.FindById(ctx, int(result.ID))
+	if err != nil {
+		if strings.Contains(err.Error(), "schedule not found"){
+			return ctx.JSON(http.StatusNotFound, helpers.ErrorResponse("Schedule not found"))
+		}
+		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Get Schedule Data Error"))
+	}
+
+	response := res.CreateScheduleDomainToScheduleResponse(results)
 
 	return ctx.JSON(http.StatusCreated, helpers.SuccessResponse("Succesfully create Schedule", response))
 }
@@ -58,7 +69,7 @@ func (c *ScheduleControllerImpl) UpdateScheduleController(ctx echo.Context) erro
 	if err != nil {
 		return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("Invalid Client Input"))
 	}
-	result, err := c.ScheduleService.UpdateSchedule(ctx, scheduleUpdateRequest, scheduleIdInt)
+	_ , err = c.ScheduleService.UpdateSchedule(ctx, scheduleUpdateRequest, scheduleIdInt)
 	if err != nil {
 		if strings.Contains(err.Error(), "validation failed") {
 			return ctx.JSON(http.StatusBadRequest, helpers.ErrorResponse("Invalid validation"))
@@ -69,7 +80,16 @@ func (c *ScheduleControllerImpl) UpdateScheduleController(ctx echo.Context) erro
 		}
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Update schedule error"))
 	}
-	response := res.UpdateScheduleDomainToScheduleResponse(result)
+
+	results, err := c.ScheduleService.FindById(ctx, scheduleIdInt)
+	if err != nil {
+		if strings.Contains(err.Error(), "schedule not found"){
+			return ctx.JSON(http.StatusNotFound, helpers.ErrorResponse("Schedule not found"))
+		}
+		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Get Schedule Data Error"))
+	}
+	
+	response := res.UpdateScheduleDomainToScheduleResponse(results)
 	return ctx.JSON(http.StatusOK, helpers.SuccessResponse("Succesfully Updated Schedule Data", response))
 }
 
@@ -99,7 +119,7 @@ func (c *ScheduleControllerImpl) GetAllScheduleController(ctx echo.Context) erro
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Get All Schedule Data Error"))
 	}
 	response := res.ConvertScheduleResponse(result)
-	return ctx.JSON(http.StatusOK, helpers.SuccessResponse("Successfully Get Schedule Data", response))
+	return ctx.JSON(http.StatusOK, helpers.SuccessResponse("Successfully Get All Schedule Data", response))
 }
 
 func (c *ScheduleControllerImpl) DeleteScheduleController(ctx echo.Context) error{
@@ -115,7 +135,20 @@ func (c *ScheduleControllerImpl) DeleteScheduleController(ctx echo.Context) erro
 		}
 		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Delete Schedule Data Error"))
 	}
-	return ctx.JSON(http.StatusOK, helpers.SuccessResponse("Successfully Get Schedule Data", nil))
+	return ctx.JSON(http.StatusOK, helpers.SuccessResponse("Successfully Delete Schedule Data", nil))
 }
 
 
+func (c *ScheduleControllerImpl) GetScheduleControllerByDoctor(ctx echo.Context) error{
+	doctorID := middleware.ExtractTokenDoctorId(ctx)
+
+	result, err := c.ScheduleService.FindByDoctor(int(doctorID))
+	if err != nil {
+		if strings.Contains(err.Error(), "schedule not found"){
+			return ctx.JSON(http.StatusNotFound, helpers.ErrorResponse("schedule not found"))
+		}
+		return ctx.JSON(http.StatusInternalServerError, helpers.ErrorResponse("Get schedule Data Error"))
+	}
+	response := res.ConvertScheduleResponse(result)
+	return ctx.JSON(http.StatusOK, helpers.SuccessResponse("Successfully Get schedule Data", response))
+}
